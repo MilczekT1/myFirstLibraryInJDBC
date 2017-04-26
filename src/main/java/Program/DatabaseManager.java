@@ -12,7 +12,7 @@ public class DatabaseManager {
     private static final String USER = "Konrad_Boniecki";     //"oskar";
     private static final String USERPW = "Kondzio";             //"akademiakodu";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private Connection connection;
+    private static Connection connection;
     
     //TODO: creates from file
     
@@ -34,7 +34,7 @@ public class DatabaseManager {
         }
     }
     
-    private void createTablesIfNotExists() throws  SQLException{
+    private static void createTablesIfNotExists() throws  SQLException{
         DatabaseMetaData md = connection.getMetaData();
         ResultSet rs = md.getTables(null, null, "%", null);
         @Cleanup
@@ -55,7 +55,7 @@ public class DatabaseManager {
         }
         rs.close();
     }
-    public void dbAddBookReader(String name, String surname) throws SQLException {
+    public static void dbAddBookReader(String name, String surname) throws SQLException {
         String query = "INSERT INTO readers(name, surname) VALUES(?, ?)";
         
         @Cleanup
@@ -68,7 +68,7 @@ public class DatabaseManager {
         //TODO: log it
         System.out.println("added bookReader");
     }
-    public void dbAddBook(String title, Integer pages)throws SQLException{
+    public static void dbAddBook(String title, Integer pages)throws SQLException{
         String query = "INSERT INTO books(title, pages) VALUES(?, ?)";
         
         @Cleanup
@@ -80,7 +80,7 @@ public class DatabaseManager {
         //TODO: log it
         System.out.println("added book");
     }
-    public void dbAddRent(int readerID, int bookID) throws SQLException{
+    public static void dbAddRent(int readerID, int bookID) throws SQLException{
         String query = "INSERT INTO rents(readerID, bookID) VALUES(?, ?)";
         
         @Cleanup
@@ -94,7 +94,7 @@ public class DatabaseManager {
         System.out.println("added rent");
     }
     
-    public CachedRowSet dbGetAllFromTable(String tableName) throws SQLException{
+    public static CachedRowSet dbGetAllFromTable(String tableName) throws SQLException{
         @Cleanup
         Statement statement = connection.createStatement();
         RowSetFactory factory = RowSetProvider.newFactory();

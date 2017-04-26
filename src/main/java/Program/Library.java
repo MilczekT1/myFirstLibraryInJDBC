@@ -8,22 +8,24 @@ import javax.sql.rowset.CachedRowSet;
 import java.sql.SQLException;
 
 public class Library {
-    private DatabaseManager database;
+    /*private DatabaseManager database;
     
     public Library() {
         database = new DatabaseManager();
     }
-    
+    */
     public void addBookReader(BookReader reader){
         try {
-            database.dbAddBookReader(reader.getName(), reader.getSurname());
+            DatabaseManager.dbAddBookReader(reader.getName(), reader.getSurname());
+            //database.dbAddBookReader(reader.getName(), reader.getSurname());
         } catch (SQLException e) {
             System.out.println("Adding book reader to db failed");
         }
     }
     public void addBook(Book book){
         try {
-            database.dbAddBook(book.getTitle(),book.getPages());
+            DatabaseManager.dbAddBook(book.getTitle(),book.getPages());
+            //database.dbAddBook(book.getTitle(),book.getPages());
         } catch (SQLException e) {
             System.out.println("Adding book to db failed");
         }
@@ -31,7 +33,8 @@ public class Library {
     public void showAll(String tablename, int columns){
         try {
             @Cleanup
-            CachedRowSet crs = database.dbGetAllFromTable(tablename);
+            CachedRowSet crs = DatabaseManager.dbGetAllFromTable(tablename);
+            //CachedRowSet crs = database.dbGetAllFromTable(tablename);
             while(crs.next()) {
                 for (int i = 1; i <= columns; i++) {
                     System.out.print(crs.getString(i) + " ");

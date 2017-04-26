@@ -31,7 +31,7 @@ public class Main {
         library.showAll("books",3);
         System.out.println("Amen");
         
-        try {
+        /*try {
             CachedRowSet crs = database.dbGetAllFromTable("readers");
             
             while(crs.next()){
@@ -49,6 +49,6 @@ public class Main {
             
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
