@@ -107,4 +107,15 @@ public class DatabaseManager {
         return crs;
     }
     
+    public static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
+    
+        String query = "DELETE FROM readers WHERE readerID = ?";
+        @Cleanup
+        PreparedStatement preStatement = connection.prepareStatement(query);
+        preStatement.setInt(1, bookReaderID);
+        preStatement.execute();
+    
+        System.out.println("deleted rent with ID: " + bookReaderID);
+    }
+    
 }

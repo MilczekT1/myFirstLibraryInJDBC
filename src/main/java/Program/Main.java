@@ -4,11 +4,6 @@ import LibraryStuff.Book;
 import LibraryStuff.BookReader;
 import LibraryStuff.Rent;
 
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.RowSetFactory;
-import javax.sql.rowset.RowSetProvider;
-import java.sql.SQLException;
-
 /*
 Projekt powinien symulować działanie biblioteki.
         Zaimplementuj następujące funkcjonalności:
@@ -19,8 +14,9 @@ Projekt powinien symulować działanie biblioteki.
         * wyświetlanie wszystkich książek       +
         * wyświetlanie wszystkich wypożyczeń    +
         * wyświetlanie wszystkich osób          +
-        * usuwanie konkretnej osoby  
+        * usuwanie konkretnej osoby              +
 */
+//todo: delete user using object
 public class Main {
     public static void main(String[] args) {
         DatabaseManager database = new DatabaseManager();
@@ -29,6 +25,7 @@ public class Main {
         library.addBookReader(new BookReader("James", "Bond"));
         library.addBook(new Book("LOTR", 4676));
         library.addRent(new Rent(3,4));
+        library.deleteBookReader(5);
         library.showAll("readers",3);
         library.showAll("books",3);
         library.showAll("rents", 3);
