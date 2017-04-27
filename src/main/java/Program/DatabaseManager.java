@@ -80,7 +80,7 @@ public class DatabaseManager {
         //TODO: log it
         System.out.println("added book");
     }
-    public static void dbAddRent(int readerID, int bookID) throws SQLException{
+    public static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
         String query = "INSERT INTO rents(readerID, bookID) VALUES(?, ?)";
         
         @Cleanup

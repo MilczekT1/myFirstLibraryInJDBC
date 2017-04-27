@@ -2,6 +2,7 @@ package Program;
 
 import LibraryStuff.Book;
 import LibraryStuff.BookReader;
+import LibraryStuff.Rent;
 import lombok.Cleanup;
 
 import javax.sql.rowset.CachedRowSet;
@@ -28,6 +29,14 @@ public class Library {
             //database.dbAddBook(book.getTitle(),book.getPages());
         } catch (SQLException e) {
             System.out.println("Adding book to db failed");
+        }
+    }
+    public void addRent(Rent rent){
+        try {
+            DatabaseManager.dbAddRent(rent.getBookID(), rent.getReaderID());
+            //database.dbAddBook(rent.getBookID(), rent.getReaderID());
+        } catch (SQLException e) {
+            System.out.println("Adding rent to db failed");
         }
     }
     public void showAll(String tablename, int columns){

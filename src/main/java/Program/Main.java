@@ -2,6 +2,7 @@ package Program;
 
 import LibraryStuff.Book;
 import LibraryStuff.BookReader;
+import LibraryStuff.Rent;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
@@ -13,11 +14,11 @@ Projekt powinien symulować działanie biblioteki.
         Zaimplementuj następujące funkcjonalności:
         * dodawanie książek do biblioteki       +
         * dodawanie osób do biblioteki          +
-        * dodawanie wypożyczeń do biblioteki
+        * dodawanie wypożyczeń do biblioteki    +
         * edycja danych osób w bibliotece
-        * wyświetlanie wszystkich książek
-        * wyświetlanie wszystkich wypożyczeń
-        * wyświetlanie wszystkich osób
+        * wyświetlanie wszystkich książek       +
+        * wyświetlanie wszystkich wypożyczeń    +
+        * wyświetlanie wszystkich osób          +
         * usuwanie konkretnej osoby  
 */
 public class Main {
@@ -27,8 +28,11 @@ public class Main {
         
         library.addBookReader(new BookReader("James", "Bond"));
         library.addBook(new Book("LOTR", 4676));
+        library.addRent(new Rent(3,4));
         library.showAll("readers",3);
         library.showAll("books",3);
+        library.showAll("rents", 3);
+        
         System.out.println("Amen");
         
         /*try {
