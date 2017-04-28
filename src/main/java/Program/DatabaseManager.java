@@ -40,15 +40,15 @@ public class DatabaseManager {
         @Cleanup
         Statement statement = connection.createStatement();
         if (!rs.next()) {
-            statement.execute("CREATE TABLE readers (" +
+            statement.execute("CREATE TABLE IF NOT EXISTS readers (" +
                                       "readerID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
                                       "name text NOT NULL," +
                                       "surname text NOT NULL)");
-            statement.execute("CREATE TABLE books (" +
+            statement.execute("CREATE TABLE IF NOT EXISTS books (" +
                                       "bookID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
                                       "title text NOT NULL," +
                                       "pages INTEGER)");
-            statement.execute("CREATE TABLE rents (" +
+            statement.execute("CREATE TABLE IF NOT EXISTS rents (" +
                                       "rentID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
                                       "readerID INTEGER NOT NULL," +
                                       "bookID INTEGER NOT NULL)");
