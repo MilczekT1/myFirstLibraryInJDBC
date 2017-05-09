@@ -1,8 +1,9 @@
-package Program;
+package LibraryStuff;
 
 import LibraryStuff.Book;
 import LibraryStuff.BookReader;
 import LibraryStuff.Rent;
+import Program.DatabaseManager;
 import lombok.Cleanup;
 
 import javax.sql.rowset.CachedRowSet;
