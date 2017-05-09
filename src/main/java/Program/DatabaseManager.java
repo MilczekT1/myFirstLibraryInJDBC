@@ -35,6 +35,7 @@ public class DatabaseManager {
     
     private static void createTablesIfNotExists() throws  SQLException{
         DatabaseMetaData md = connection.getMetaData();
+        @Cleanup
         ResultSet rs = md.getTables(null, null, "%", null);
         @Cleanup
         Statement statement = connection.createStatement();
@@ -52,7 +53,6 @@ public class DatabaseManager {
                                       "readerID INTEGER NOT NULL," +
                                       "bookID INTEGER NOT NULL)");
         }
-        rs.close();
     }
     public static void dbAddBookReader(String name, String surname) throws SQLException {
         String query = "INSERT INTO readers(name, surname) VALUES(?, ?)";
@@ -103,7 +103,6 @@ public class DatabaseManager {
         ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName);
         crs.populate(rs);
         crs.setTableName(tableName);
-        
         return crs;
     }
     
