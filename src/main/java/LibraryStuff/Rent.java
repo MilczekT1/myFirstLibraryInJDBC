@@ -14,7 +14,7 @@ public class Rent {
         this.readerID = readerID;
     }
     
-    public Rent(Integer rentID, Integer bookID, Integer readerID) {
+    public Rent(Integer bookID, Integer readerID, Integer rentID) {
         this.rentID = rentID;
         this.bookID = bookID;
         this.readerID = readerID;
