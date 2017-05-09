@@ -29,7 +29,6 @@ public class DatabaseManager {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-            //TODO:  log no database connection
             return;
         }
     }
@@ -99,7 +98,8 @@ public class DatabaseManager {
         Statement statement = connection.createStatement();
         RowSetFactory factory = RowSetProvider.newFactory();
         CachedRowSet crs = factory.createCachedRowSet();
-    
+        
+        @Cleanup
         ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName);
         crs.populate(rs);
         crs.setTableName(tableName);
@@ -108,7 +108,6 @@ public class DatabaseManager {
     }
     
     public static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
-    
         String query = "DELETE FROM readers WHERE readerID = ?";
         @Cleanup
         PreparedStatement preStatement = connection.prepareStatement(query);
