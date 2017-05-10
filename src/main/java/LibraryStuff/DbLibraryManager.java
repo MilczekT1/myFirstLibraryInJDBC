@@ -1,4 +1,4 @@
-package sample.LibraryStuff;
+package LibraryStuff;
 
 import lombok.Cleanup;
 

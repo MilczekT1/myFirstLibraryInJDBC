@@ -1,9 +1,9 @@
 package sample.Program;
 
-import sample.LibraryStuff.Library;
-import sample.LibraryStuff.Book;
-import sample.LibraryStuff.BookReader;
-import sample.LibraryStuff.Rent;
+import LibraryStuff.Library;
+import LibraryStuff.Book;
+import LibraryStuff.BookReader;
+import LibraryStuff.Rent;
 
 
 /*
