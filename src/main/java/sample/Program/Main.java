@@ -5,16 +5,17 @@ import sample.LibraryStuff.Book;
 import sample.LibraryStuff.BookReader;
 import sample.LibraryStuff.Rent;
 
+
 /*
-Projekt powinien symulować działanie biblioteki.
-        Zaimplementuj następujące funkcjonalności:
-        * dodawanie książek do biblioteki       +
-        * dodawanie osób do biblioteki          +
-        * dodawanie wypożyczeń do biblioteki    +
-        * wyświetlanie wszystkich książek       +
-        * wyświetlanie wszystkich wypożyczeń    +
-        * wyświetlanie wszystkich osób          +
-        * usuwanie konkretnej osoby              +
+Project should simulate simple library with:
+    + Add book to lib
+    + Add user to lib
+    + Add rent to lib
+    + Show all books
+    + Show all users
+    + Show all rents
+    + Remove user
+
 */
 //todo: delete user using object
 public class Main {
