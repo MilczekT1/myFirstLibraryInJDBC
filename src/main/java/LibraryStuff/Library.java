@@ -46,7 +46,20 @@ public class Library {
             DbLibraryManager.dbDeleteBookReader(bookReaderID);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("deleting book reader failed");
+        }
+    }
+    public void deleteBook(Integer bookID) {
+        try {
+            DbLibraryManager.dbDeleteBook(bookID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteRent(Integer rentID) {
+        try {
+            DbLibraryManager.dbDeleteRent(rentID);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

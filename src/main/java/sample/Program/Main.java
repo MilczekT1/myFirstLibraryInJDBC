@@ -30,6 +30,11 @@ public class Main {
         library.showAll("books",3);
         library.showAll("rents", 3);
         
+        library.deleteBook(7);
+        library.deleteBookReader(7);
+        library.deleteRent(5);
+        
+        
         System.out.println("Amen");
     }
 }
