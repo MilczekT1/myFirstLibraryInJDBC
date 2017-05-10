@@ -1,8 +1,9 @@
-package Program;
+package sample.Program;
 
-import LibraryStuff.Book;
-import LibraryStuff.BookReader;
-import LibraryStuff.Rent;
+import sample.LibraryStuff.Library;
+import sample.LibraryStuff.Book;
+import sample.LibraryStuff.BookReader;
+import sample.LibraryStuff.Rent;
 
 /*
 Projekt powinien symulować działanie biblioteki.
@@ -10,7 +11,6 @@ Projekt powinien symulować działanie biblioteki.
         * dodawanie książek do biblioteki       +
         * dodawanie osób do biblioteki          +
         * dodawanie wypożyczeń do biblioteki    +
-        * edycja danych osób w bibliotece
         * wyświetlanie wszystkich książek       +
         * wyświetlanie wszystkich wypożyczeń    +
         * wyświetlanie wszystkich osób          +
@@ -19,7 +19,6 @@ Projekt powinien symulować działanie biblioteki.
 //todo: delete user using object
 public class Main {
     public static void main(String[] args) {
-        DatabaseManager database = new DatabaseManager();
         Library library = new Library();
         
         library.addBookReader(new BookReader("James", "Bond"));
@@ -31,25 +30,5 @@ public class Main {
         library.showAll("rents", 3);
         
         System.out.println("Amen");
-        
-        /*try {
-            CachedRowSet crs = database.dbGetAllFromTable("readers");
-            
-            while(crs.next()){
-                System.out.print(crs.getString(1) + " ");
-                System.out.print(crs.getString(2) + " ");
-                System.out.println(crs.getString(3));
-            }
-            crs.close();
-            crs = database.dbGetAllFromTable("books");
-            while(crs.next()){
-                System.out.print(crs.getString(1) + " ");
-                System.out.print(crs.getString(2) + " ");
-                System.out.println(crs.getString(3));
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 }

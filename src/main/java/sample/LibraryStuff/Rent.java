@@ -1,4 +1,4 @@
-package LibraryStuff;
+package sample.LibraryStuff;
 
 import lombok.Data;
 

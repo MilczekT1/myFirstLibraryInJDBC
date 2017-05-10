@@ -1,4 +1,4 @@
-package Program;
+package sample.LibraryStuff;
 
 import lombok.Cleanup;
 
@@ -7,16 +7,15 @@ import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
 
-public class DatabaseManager {
+public class DbLibraryManager {
     private static final String DB = "jdbc:mysql://5.135.218.27:3306/Konrad_Boniecki";
     private static final String USER = "Konrad_Boniecki";     //"oskar";
     private static final String USERPW = "Kondzio";             //"akademiakodu";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static Connection connection;
+    private static DbLibraryManager instance = new DbLibraryManager();
     
-    //TODO: creates from file
-    
-    public DatabaseManager(){
+    private DbLibraryManager(){
         try {
             Class.forName(DRIVER).newInstance();
             connection = DriverManager.getConnection(DB, USER, USERPW);
@@ -33,7 +32,12 @@ public class DatabaseManager {
         }
     }
     
-    private static void createTablesIfNotExists() throws  SQLException{
+    private static DbLibraryManager getInstance(){
+        return instance;
+    }
+    //TODO: creates from file
+    
+    protected static void createTablesIfNotExists() throws  SQLException{
         DatabaseMetaData md = connection.getMetaData();
         @Cleanup
         ResultSet rs = md.getTables(null, null, "%", null);
@@ -54,7 +58,7 @@ public class DatabaseManager {
                                       "bookID INTEGER NOT NULL)");
         }
     }
-    public static void dbAddBookReader(String name, String surname) throws SQLException {
+    protected static void dbAddBookReader(String name, String surname) throws SQLException {
         String query = "INSERT INTO readers(name, surname) VALUES(?, ?)";
         
         @Cleanup
@@ -67,7 +71,7 @@ public class DatabaseManager {
         //TODO: log it
         System.out.println("added bookReader");
     }
-    public static void dbAddBook(String title, Integer pages)throws SQLException{
+    protected static void dbAddBook(String title, Integer pages)throws SQLException{
         String query = "INSERT INTO books(title, pages) VALUES(?, ?)";
         
         @Cleanup
@@ -79,7 +83,7 @@ public class DatabaseManager {
         //TODO: log it
         System.out.println("added book");
     }
-    public static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
+    protected static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
         String query = "INSERT INTO rents(readerID, bookID) VALUES(?, ?)";
         
         @Cleanup
@@ -93,7 +97,7 @@ public class DatabaseManager {
         System.out.println("added rent");
     }
     
-    public static CachedRowSet dbGetAllFromTable(String tableName) throws SQLException{
+    protected static CachedRowSet dbGetAllFromTable(String tableName) throws SQLException{
         @Cleanup
         Statement statement = connection.createStatement();
         RowSetFactory factory = RowSetProvider.newFactory();
@@ -106,7 +110,7 @@ public class DatabaseManager {
         return crs;
     }
     
-    public static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
+    protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
         String query = "DELETE FROM readers WHERE readerID = ?";
         @Cleanup
         PreparedStatement preStatement = connection.prepareStatement(query);
