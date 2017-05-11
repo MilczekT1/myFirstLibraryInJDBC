@@ -21,7 +21,7 @@ Project should simulate simple library with:
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        
+        /*
         library.addBookReader(new BookReader("James", "Bond"));
         library.addBook(new Book("LOTR", 4676));
         library.addRent(new Rent(3,4));
@@ -33,8 +33,8 @@ public class Main {
         library.deleteBook(7);
         library.deleteBookReader(7);
         library.deleteRent(5);
-        
-        
+        */
+        library.showAll("rents",);
         System.out.println("Amen");
     }
 }
