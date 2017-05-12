@@ -3,11 +3,14 @@ package LibraryStuff;
 import lombok.Data;
 
 @Data
-public class Book {
+public class Book implements LibraryItem {
     
     private String title;
     private int pages;
     private int id;
+    
+    public Book(){
+    }
     
     public Book(String title, int pages) {
         this.title = title;
