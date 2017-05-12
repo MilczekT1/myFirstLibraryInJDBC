@@ -42,7 +42,6 @@ public class DbLibraryManager {
     private static DbLibraryManager getInstance(){
         return instance;
     }
-    //TODO: creates from file
     
     protected static void createTablesIfNotExists() throws  SQLException{
         DatabaseMetaData md = connection.getMetaData();
