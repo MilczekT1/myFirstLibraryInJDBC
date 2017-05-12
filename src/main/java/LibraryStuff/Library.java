@@ -27,25 +27,7 @@ public class Library {
             System.out.println("Adding rent to db failed");
         }
     }
-    public void showAll(String tableName){
-        try {
-            @Cleanup
-            CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
-            while(crs.next()) {
-                for (int i = 1; i <= 50; i++) {
-                    try {
-                        System.out.print(crs.getString(i) + " ");
-                    }
-                    catch (SQLException notEnoughColumns){
-                        break;
-                    }
-                }
-                System.out.println();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    
     public void deleteBookReader(Integer bookReaderID) {
         try {
             DbLibraryManager.dbDeleteBookReader(bookReaderID);
@@ -66,5 +48,34 @@ public class Library {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void showAll(String tableName){
+        try {
+            @Cleanup
+            CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
+            while(crs.next()) {
+                for (int i = 1; i <= 50; i++) {
+                    try {
+                        System.out.print(crs.getString(i) + " ");
+                    }
+                    catch (SQLException notEnoughColumns){
+                        break;
+                    }
+                }
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public LibraryItem getObjectFromTable(String tableName, int wantedId){
+        LibraryItem resultObject= null;
+        try {
+            resultObject = DbLibraryManager.dbGetObjectFromTableWithId(tableName, wantedId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultObject;
     }
 }
