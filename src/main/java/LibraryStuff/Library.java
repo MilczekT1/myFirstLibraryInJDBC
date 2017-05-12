@@ -27,12 +27,12 @@ public class Library {
             System.out.println("Adding rent to db failed");
         }
     }
-    public void showAll(String tablename, int columns){
+    public void showAll(String tableName){
         try {
             @Cleanup
-            CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tablename);
+            CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
             while(crs.next()) {
-                for (int i = 1; i <= columns; i++) {
+                for (int i = 1; i <= 10; i++) {
                     System.out.print(crs.getString(i) + " ");
                 }
                 System.out.println();
