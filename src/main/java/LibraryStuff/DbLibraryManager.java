@@ -5,7 +5,14 @@ import lombok.Cleanup;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
+import java.util.List;
 
 public class DbLibraryManager {
     private static final String DB = "jdbc:mysql://5.135.218.27:3306/Konrad_Boniecki";
@@ -40,22 +47,24 @@ public class DbLibraryManager {
     protected static void createTablesIfNotExists() throws  SQLException{
         DatabaseMetaData md = connection.getMetaData();
         @Cleanup
-        ResultSet rs = md.getTables(null, null, "%", null);
-        @Cleanup
         Statement statement = connection.createStatement();
-        if (!rs.next()) {
-            statement.execute("CREATE TABLE IF NOT EXISTS readers (" +
-                                      "readerID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                                      "name text NOT NULL," +
-                                      "surname text NOT NULL)");
-            statement.execute("CREATE TABLE IF NOT EXISTS books (" +
-                                      "bookID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                                      "title text NOT NULL," +
-                                      "pages INTEGER)");
-            statement.execute("CREATE TABLE IF NOT EXISTS rents (" +
-                                      "rentID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                                      "readerID INTEGER NOT NULL," +
-                                      "bookID INTEGER NOT NULL)");
+    
+        try {
+            Path path = Paths.get("src/main/resources/","Create.sql");
+            List<String> lines = Files.readAllLines(path, Charset.forName("UTF-8"));
+        
+            String query = "";
+            for (String line : lines){
+                query += line;
+                if (line.endsWith(";")){
+                    statement.execute(query);
+                    query = "";
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
     }
     protected static void dbAddBookReader(String name, String surname) throws SQLException {
