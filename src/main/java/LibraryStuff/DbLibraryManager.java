@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.Calendar;
 import java.util.List;
 
 public class DbLibraryManager {
@@ -47,11 +48,11 @@ public class DbLibraryManager {
         DatabaseMetaData md = connection.getMetaData();
         @Cleanup
         Statement statement = connection.createStatement();
-    
+        
         try {
             Path path = Paths.get("src/main/resources/","Create.sql");
             List<String> lines = Files.readAllLines(path, Charset.forName("UTF-8"));
-        
+            
             String query = "";
             for (String line : lines){
                 query += line;
@@ -93,15 +94,20 @@ public class DbLibraryManager {
         System.out.println("added book");
     }
     protected static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
-        String query = "INSERT INTO rents(readerID, bookID) VALUES(?, ?)";
+        String query = "INSERT INTO rents(readerID, bookID, endDate) VALUES(?, ?, ?)";
+    
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 30); // DEFAULT RENT TIME 30 DAYS
+        
         
         @Cleanup
         PreparedStatement preStatement = connection.prepareStatement(query);
         
         preStatement.setInt(1, readerID);
         preStatement.setInt(2, bookID);
+        preStatement.setTimestamp(3, new Timestamp(cal.getTime().getTime()));
         preStatement.execute();
-    
+        
         //TODO: log it
         System.out.println("added rent");
     }
