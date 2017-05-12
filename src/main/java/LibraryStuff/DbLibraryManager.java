@@ -106,6 +106,34 @@ public class DbLibraryManager {
         System.out.println("added rent");
     }
     
+    protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
+        String query = "DELETE FROM readers WHERE readerID = ?";
+        @Cleanup
+        PreparedStatement preStatement = connection.prepareStatement(query);
+        preStatement.setInt(1, bookReaderID);
+        preStatement.execute();
+        
+        System.out.println("deleted book reader with ID: " + bookReaderID);
+    }
+    protected static void dbDeleteBook(Integer bookID) throws SQLException {
+        String query = "DELETE FROM books WHERE bookID = ?";
+        @Cleanup
+        PreparedStatement preStatement = connection.prepareStatement(query);
+        preStatement.setInt(1, bookID);
+        preStatement.execute();
+        
+        System.out.println("deleted book with ID: " + bookID);
+    }
+    protected static void dbDeleteRent(Integer rentID) throws SQLException {
+        String query = "DELETE FROM rents WHERE rentID = ?";
+        @Cleanup
+        PreparedStatement preStatement = connection.prepareStatement(query);
+        preStatement.setInt(1, rentID);
+        preStatement.execute();
+        
+        System.out.println("deleted rent with ID: " + rentID);
+    }
+    
     protected static CachedRowSet dbGetAllFromTable(String tableName) throws SQLException{
         @Cleanup
         Statement statement = connection.createStatement();
@@ -118,7 +146,6 @@ public class DbLibraryManager {
         crs.setTableName(tableName);
         return crs;
     }
-    
     protected static LibraryItem dbGetObjectFromTableWithId(String tableName, Integer wantedId) throws SQLException {
         String selectBook = "SELECT * FROM books WHERE bookID = " + wantedId;
         String selectReader = "SELECT * FROM readers WHERE readerID = " + wantedId;
@@ -151,33 +178,5 @@ public class DbLibraryManager {
                 break;
         }
         throw new SQLException("error selecting object from db");
-    }
-    
-    protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
-        String query = "DELETE FROM readers WHERE readerID = ?";
-        @Cleanup
-        PreparedStatement preStatement = connection.prepareStatement(query);
-        preStatement.setInt(1, bookReaderID);
-        preStatement.execute();
-    
-        System.out.println("deleted book reader with ID: " + bookReaderID);
-    }
-    protected static void dbDeleteBook(Integer bookID) throws SQLException {
-        String query = "DELETE FROM books WHERE bookID = ?";
-        @Cleanup
-        PreparedStatement preStatement = connection.prepareStatement(query);
-        preStatement.setInt(1, bookID);
-        preStatement.execute();
-        
-        System.out.println("deleted book with ID: " + bookID);
-    }
-    protected static void dbDeleteRent(Integer rentID) throws SQLException {
-        String query = "DELETE FROM rents WHERE rentID = ?";
-        @Cleanup
-        PreparedStatement preStatement = connection.prepareStatement(query);
-        preStatement.setInt(1, rentID);
-        preStatement.execute();
-        
-        System.out.println("deleted rent with ID: " + rentID);
     }
 }

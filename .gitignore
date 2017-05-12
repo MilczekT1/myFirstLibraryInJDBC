@@ -1,5 +1,4 @@
-.idea/workspace.xml
 .idea/
-build/
 .gradle/
+build/
 src/main/resources/smieci.txt
