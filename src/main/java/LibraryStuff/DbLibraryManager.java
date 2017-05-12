@@ -118,6 +118,56 @@ public class DbLibraryManager {
         return crs;
     }
     
+    protected static Object dbGetObjectFromTableWithId(String tableName, Integer wantedId) throws SQLException {
+        String query = "SELECT * FROM ? WHERE ?=?"; // TODO: LIMIT 1
+        @Cleanup
+        PreparedStatement preStatement = connection.prepareStatement(query);
+    
+        preStatement.setString(1, tableName);
+        preStatement.setInt(3,wantedId);
+    
+        Object result = null;
+        switch (tableName){
+            case "books":
+                result = (Book) result;
+                preStatement.setString(2, "bookID");
+                @Cleanup
+                ResultSet book = preStatement.executeQuery();
+                if(book.next()) {
+                    ((Book) result).setId(book.getInt("bookID"));
+                    ((Book) result).setPages(book.getInt("pages"));
+                    ((Book) result).setTitle(book.getString("title"));
+                }
+                break;
+            case "readers":
+                result = (BookReader) result;
+                preStatement.setString(2, "readerID");
+                @Cleanup
+                ResultSet reader = preStatement.executeQuery();
+                if(reader.next()) {
+                    ((Book) result).setId(reader.getInt("bookID"));
+                    ((Book) result).setPages(reader.getInt("pages"));
+                    ((Book) result).setTitle(reader.getString("title"));
+                }
+                break;
+            case "rents":
+                result = (Rent) result;
+                preStatement.setString(2, "rentID");
+                @Cleanup
+                ResultSet rent = preStatement.executeQuery();
+                if(rent.next()) {
+                    ((Book) result).setId(rent.getInt("bookID"));
+                    ((Book) result).setPages(rent.getInt("pages"));
+                    ((Book) result).setTitle(rent.getString("title"));
+                }
+                break;
+            default:
+                System.out.println("error: no such object in database");
+                break;
+        }
+        return result;
+    }
+    
     protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
         String query = "DELETE FROM readers WHERE readerID = ?";
         @Cleanup
