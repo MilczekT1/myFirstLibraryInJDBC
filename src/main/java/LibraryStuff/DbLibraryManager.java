@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 
@@ -98,7 +99,6 @@ public class DbLibraryManager {
     
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 30); // DEFAULT RENT TIME 30 DAYS
-        
         
         @Cleanup
         PreparedStatement preStatement = connection.prepareStatement(query);
