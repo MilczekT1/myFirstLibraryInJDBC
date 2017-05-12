@@ -1,4 +1,5 @@
 package LibraryStuff;
 
-public interface LibraryItem {
+interface LibraryItem {
+
 }
