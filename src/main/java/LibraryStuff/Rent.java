@@ -3,7 +3,7 @@ package LibraryStuff;
 import lombok.Data;
 
 @Data
-public class Rent {
+public class Rent implements LibraryItem {
     
     private Integer rentID;
     private Integer bookID;
