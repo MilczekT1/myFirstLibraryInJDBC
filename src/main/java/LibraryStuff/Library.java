@@ -32,8 +32,13 @@ public class Library {
             @Cleanup
             CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
             while(crs.next()) {
-                for (int i = 1; i <= 10; i++) {
-                    System.out.print(crs.getString(i) + " ");
+                for (int i = 1; i <= 50; i++) {
+                    try {
+                        System.out.print(crs.getString(i) + " ");
+                    }
+                    catch (SQLException notEnoughColumns){
+                        break;
+                    }
                 }
                 System.out.println();
             }
