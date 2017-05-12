@@ -41,7 +41,7 @@ public class DbLibraryManager {
         }
     }
     
-    private static DbLibraryManager getInstance(){
+    public static DbLibraryManager getInstance(){
         return instance;
     }
     
