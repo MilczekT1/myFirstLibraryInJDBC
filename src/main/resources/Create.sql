@@ -1,3 +1,4 @@
+use Konrad_Boniecki;
 CREATE TABLE IF NOT EXISTS readers (
     readerID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
