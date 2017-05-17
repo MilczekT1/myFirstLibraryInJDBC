@@ -16,7 +16,8 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 
-public class DbLibraryManager {
+class DbLibraryManager {
+    
     private static final String DB = "jdbc:mysql://5.135.218.27:3306/Konrad_Boniecki";
     private static final String USER = "Konrad_Boniecki";
     private static final String USERPW = "Kondzio";

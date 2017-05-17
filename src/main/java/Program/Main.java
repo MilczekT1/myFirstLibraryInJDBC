@@ -1,10 +1,6 @@
-package sample.Program;
+package Program;
 
 import LibraryStuff.Library;
-import LibraryStuff.Book;
-import LibraryStuff.BookReader;
-import LibraryStuff.Rent;
-
 
 /*
 Project should simulate simple library with:
@@ -15,26 +11,23 @@ Project should simulate simple library with:
     + Show all users
     + Show all rents
     + Remove user
-
+    + Remove book
+    + remove rent
+    + get object from table
 */
-//todo: delete user using object
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        /*
-        library.addBookReader(new BookReader("James", "Bond"));
-        library.addBook(new Book("LOTR", 4676));
-        library.addRent(new Rent(3,4));
-        library.deleteBookReader(5);
-        library.showAll("readers",3);
-        library.showAll("books",3);
-        library.showAll("rents", 3);
         
-        library.deleteBook(7);
-        library.deleteBookReader(7);
-        library.deleteRent(5);
-        */
-        library.showAll("rents",);
+        
+        // examples
+        library.addBookReader("James", "Bond");
+        library.addBook("LOTR", 4676);
+        library.addRent(1,1);
+        library.showAll("readers");
+        library.showAll("books");
+        library.showAll("rents");
+        
         System.out.println("Amen");
     }
 }

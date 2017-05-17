@@ -6,23 +6,24 @@ import javax.sql.rowset.CachedRowSet;
 import java.sql.SQLException;
 
 public class Library {
-    public void addBookReader(BookReader reader){
+    
+    public void addBookReader(String name, String surname){
         try {
-            DbLibraryManager.dbAddBookReader(reader.getName(), reader.getSurname());
+            DbLibraryManager.dbAddBookReader(name, surname);
         } catch (SQLException e) {
             System.out.println("Adding book reader to db failed");
         }
     }
-    public void addBook(Book book){
+    public void addBook(String title, Integer pages){
         try {
-            DbLibraryManager.dbAddBook(book.getTitle(),book.getPages());
+            DbLibraryManager.dbAddBook(title, pages);
         } catch (SQLException e) {
             System.out.println("Adding book to db failed");
         }
     }
-    public void addRent(Rent rent){
+    public void addRent(Integer bookID, Integer readerID){
         try {
-            DbLibraryManager.dbAddRent(rent.getBookID(), rent.getReaderID());
+            DbLibraryManager.dbAddRent(bookID, readerID);
         } catch (SQLException e) {
             System.out.println("Adding rent to db failed");
         }
