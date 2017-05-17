@@ -140,7 +140,6 @@ public class DbLibraryManager {
         //TODO: log it
         System.out.println("added book");
     }
-    
     protected static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
         String query = "INSERT INTO rents(readerID, bookID, endDate) VALUES(?, ?, ?)";
     
@@ -158,6 +157,7 @@ public class DbLibraryManager {
         //TODO: log it
         System.out.println("added rent");
     }
+    
     protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
         String query = "DELETE FROM readers WHERE readerID = ?";
         @Cleanup
@@ -176,7 +176,6 @@ public class DbLibraryManager {
         
         System.out.println("deleted book with ID: " + bookID);
     }
-    
     protected static void dbDeleteRent(Integer rentID) throws SQLException {
         String query = "DELETE FROM rents WHERE rentID = ?";
         @Cleanup
