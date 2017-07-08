@@ -10,12 +10,22 @@ class BookReader implements LibraryItem {
     private String surname;
     
     public BookReader(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+        if (name != null & surname != null) {
+            this.name = name;
+            this.surname = surname;
+        }
+        else{
+            throw new IllegalArgumentException("Incorrect input in 2 arg constructor");
+        }
     }
     public BookReader(String name, String surname, Integer id) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
+        if (name != null & surname != null && id !=null && !id.equals(0)) {
+            this.name = name;
+            this.surname = surname;
+            this.id = id;
+        }
+        else{
+            throw new IllegalArgumentException("Incorrect input in 3 arg constructor");
+        }
     }
 }
