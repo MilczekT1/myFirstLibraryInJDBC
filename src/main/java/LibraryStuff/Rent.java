@@ -18,7 +18,7 @@ class Rent implements LibraryItem {
         }
     }
     
-    public Rent(Integer bookID, Integer readerID, Integer rentID) {
+    public Rent(Integer bookID, Integer readerID, Integer rentID) throws IllegalArgumentException {
         if (bookID != null &&  bookID > 0 &&
             readerID != null && readerID > 0 &&
             rentID != null && rentID > 0){
