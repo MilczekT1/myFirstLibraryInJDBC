@@ -1,5 +1,6 @@
 package LibraryStuff;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,10 @@ public class TestBookReader {
     @Before
     public void beforeTest(){
         bookReader = new BookReader("Konrad", "Boniecki");
+    }
+    @AfterClass
+    public static void shutDown(){
+        bookReader = null;
     }
     
     
