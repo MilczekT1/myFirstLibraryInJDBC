@@ -24,25 +24,25 @@ public class TestBookReader {
         try {
             bookReader = new BookReader("Konrad", "Boniecki");
         } catch(IllegalArgumentException e) {
-            Assert.fail("IllegalArgumentException was thrown");
+            Assert.fail("IllegalArgumentException has been thrown");
         }
         
         // Incorrect name
         try {
             bookReader = new BookReader(null, "Boniecki");
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         // Incorrect surname
         try {
             bookReader = new BookReader("Konrad", null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         // Incorrect all arguments
         try {
             bookReader = new BookReader(null, null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     }
     
@@ -52,41 +52,41 @@ public class TestBookReader {
         try {
             bookReader = new BookReader("Konrad", "Boniecki",5);
         } catch(IllegalArgumentException e) {
-            Assert.fail("IllegalArgumentException was thrown");
+            Assert.fail("IllegalArgumentException has been thrown");
         }
     
         // Incorrect all arguments;
         try {
             bookReader = new BookReader(null, null,null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             bookReader = new BookReader(null, null, 0);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     
         // Incorrect name
         try {
             bookReader = new BookReader(null, "Boniecki", 5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     
         // Incorrect surname
         try {
             bookReader = new BookReader("Konrad", null,5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         // Incorrect id
         try {
             bookReader = new BookReader("Konrad", "Boniecki",0);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             bookReader = new BookReader("Konrad", "Boniecki",null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     }
 }

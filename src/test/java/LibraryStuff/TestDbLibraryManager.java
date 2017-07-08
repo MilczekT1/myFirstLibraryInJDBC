@@ -14,7 +14,7 @@ public class TestDbLibraryManager {
     
     @Test
     public void testMethod_GetInstance(){
-        Assert.assertNotNull("getInstance() shouldn't return null",DbLibraryManager.getInstance());
+        Assert.assertNotNull("getInstance() should not return null",DbLibraryManager.getInstance());
     }
     
 }

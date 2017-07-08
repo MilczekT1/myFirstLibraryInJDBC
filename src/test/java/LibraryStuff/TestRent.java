@@ -24,29 +24,29 @@ public class TestRent {
         try {
             rent = new Rent(1,1);
         } catch(IllegalArgumentException e) {
-            Assert.fail("IllegalArgumentException was thrown");
+            Assert.fail("IllegalArgumentException has been thrown");
         }
     
         // Incorrect bookID
         try {
             rent = new Rent(-5,1);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             rent = new Rent(null,1);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     
         // Incorrect readerID
         try {
             rent = new Rent(1,-5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             rent = new Rent(1,null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     }
     
@@ -56,40 +56,40 @@ public class TestRent {
         try {
             rent = new Rent(1,1,5);
         } catch(IllegalArgumentException e) {
-            Assert.fail("IllegalArgumentException was thrown");
+            Assert.fail("IllegalArgumentException has been thrown");
         }
     
         // Incorrect bookID
         try {
             rent = new Rent(-5,1,5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             rent = new Rent(null,1,5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     
         // Incorrect readerID
         try {
             rent = new Rent(1,-1,5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             rent = new Rent(1,null,5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         // Incorrect rentID
         try {
             rent = new Rent(1,1,-5);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
         
         try {
             rent = new Rent(1,1,null);
-            Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException has not been thrown");
         } catch(IllegalArgumentException e) { ; }
     }
 }
