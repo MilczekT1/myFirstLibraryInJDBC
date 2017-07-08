@@ -9,7 +9,7 @@ class BookReader implements LibraryItem {
     private String name;
     private String surname;
     
-    public BookReader(String name, String surname) {
+    public BookReader(String name, String surname) throws IllegalArgumentException {
         if (name != null & surname != null) {
             this.name = name;
             this.surname = surname;
@@ -18,8 +18,8 @@ class BookReader implements LibraryItem {
             throw new IllegalArgumentException("Incorrect input in 2 arg constructor");
         }
     }
-    public BookReader(String name, String surname, Integer id) {
-        if (name != null & surname != null && id !=null && !id.equals(0)) {
+    public BookReader(String name, String surname, Integer id) throws IllegalArgumentException {
+        if (name != null & surname != null && id !=null && id > 0) {
             this.name = name;
             this.surname = surname;
             this.id = id;
