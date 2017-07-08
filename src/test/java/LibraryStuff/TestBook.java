@@ -31,7 +31,7 @@ public class TestBook {
     
     @Test
     public void constructorsWith2ArgumentsTest(){
-        // Wrong pages amount
+        // Incorrect pages amount
         boolean exceptionCatched = false;
         try {
             book = new Book("LOTR", -5);
@@ -40,7 +40,7 @@ public class TestBook {
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
-        // Wrong title
+        // Incorrect title
         exceptionCatched = false;
         try {
             book = new Book(null, 500);
@@ -49,7 +49,7 @@ public class TestBook {
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
-        // Wrong both arguments
+        // Incorrect both arguments
         exceptionCatched = false;
         try {
             book = new Book(null, -500);
@@ -58,7 +58,7 @@ public class TestBook {
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
-        // Good both arguments
+        // Correct both arguments
         exceptionCatched = false;
         try {
             book = new Book("LOTR", 500);
