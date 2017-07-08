@@ -21,103 +21,72 @@ public class TestBookReader {
     @Test
     public void test2ArgConstructors(){
         // Correct all arguments
-        boolean exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", "Boniecki");
         } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
+            Assert.fail("IllegalArgumentException was thrown");
         }
-        if (exceptionCatched) Assert.fail("IllegalArgumentException was thrown");
         
         // Incorrect name
-        exceptionCatched = false;
         try {
             bookReader = new BookReader(null, "Boniecki");
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
         
         // Incorrect surname
-        exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", null);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
         
         // Incorrect all arguments
-        exceptionCatched = false;
         try {
             bookReader = new BookReader(null, null);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
     }
     
     @Test
     public void test3ArgConstructors(){
         // Correct all arguments
-        boolean exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", "Boniecki",5);
         } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
+            Assert.fail("IllegalArgumentException was thrown");
         }
-        if (exceptionCatched) Assert.fail("IllegalArgumentException was thrown");
     
-        // Incorrect all arguments
-        exceptionCatched = false;
+        // Incorrect all arguments;
         try {
             bookReader = new BookReader(null, null,null);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
         
-        exceptionCatched = false;
         try {
             bookReader = new BookReader(null, null, 0);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
     
         // Incorrect name
-        exceptionCatched = false;
         try {
             bookReader = new BookReader(null, "Boniecki", 5);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
     
         // Incorrect surname
-        exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", null,5);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
+        
         // Incorrect id
-        exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", "Boniecki",0);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
         
-        exceptionCatched = false;
         try {
             bookReader = new BookReader("Konrad", "Boniecki",null);
-        } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
-    
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e) { ; }
     }
 }
