@@ -32,40 +32,29 @@ public class TestBook {
     @Test
     public void constructorsWith2ArgumentsTest(){
         // Incorrect pages amount
-        boolean exceptionCatched = false;
         try {
             book = new Book("LOTR", -5);
-        } catch(IllegalArgumentException e){
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
         
         // Incorrect title
-        exceptionCatched = false;
         try {
             book = new Book(null, 500);
-        } catch(IllegalArgumentException e){
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
         
         // Incorrect both arguments
-        exceptionCatched = false;
         try {
             book = new Book(null, -500);
-        } catch(IllegalArgumentException e){
-            exceptionCatched = true;
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
         
         // Correct both arguments
-        exceptionCatched = false;
         try {
             book = new Book("LOTR", 500);
         } catch(IllegalArgumentException e) {
-            exceptionCatched = true;
+            Assert.fail("IllegalArgumentException was thrown");
         }
-        if (exceptionCatched) Assert.fail("IllegalArgumentException was thrown");
         Assert.assertEquals("id should be 0",0,book.getId());
         Assert.assertEquals("Pages amount should be 500",500,book.getPages());
         Assert.assertEquals("Title should be LOTR","LOTR",book.getTitle());
@@ -75,57 +64,34 @@ public class TestBook {
     public void constructorsWith3ArgumentsTest(){
     
         // all arguments correct
-        boolean exceptionCatched = false;
         try {
             book = new Book("LOTR", 500,5);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
+        } catch(IllegalArgumentException e){
+            Assert.fail("IllegalArgumentException was thrown");
         }
-        if (exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
-    
-    
+        
         // incorrect pages amount
-        exceptionCatched = false;
         try {
             book = new Book("LOTR", 0,5);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
+        
         // incorrect id
-        exceptionCatched = false;
         try {
             book = new Book("LOTR", 5,-5);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
     
         // incorrect title
-        exceptionCatched = false;
         try {
             book = new Book(null, 5,5);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
+        
         // all incorrect arguments
-        exceptionCatched = false;
         try {
             book = new Book(null, -5,-5);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
-        }
-        if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
+            Assert.fail("IllegalArgumentException was not thrown");
+        } catch(IllegalArgumentException e){ ; }
     }
 }
