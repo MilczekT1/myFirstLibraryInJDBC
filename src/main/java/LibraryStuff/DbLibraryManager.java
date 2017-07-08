@@ -5,7 +5,6 @@ import lombok.Cleanup;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -23,18 +22,14 @@ class DbLibraryManager {
     private static final String USERPW = "Kondzio";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static Connection connection;
-    private static DbLibraryManager instance = new DbLibraryManager();
+    private static final DbLibraryManager instance = new DbLibraryManager();
     
     private DbLibraryManager(){
         try {
             Class.forName(DRIVER).newInstance();
             connection = DriverManager.getConnection(DB, USER, USERPW);
             createTablesIfNotExists();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,12 +37,14 @@ class DbLibraryManager {
         }
     }
     
-    public static DbLibraryManager getInstance(){
-        return instance;
+    public static DbLibraryManager getInstance()throws IllegalStateException{
+        if (instance != null)
+            return instance;
+        else
+            throw new IllegalStateException();
     }
     
-    protected static void createTablesIfNotExists() throws  SQLException{
-        DatabaseMetaData md = connection.getMetaData();
+    private static void createTablesIfNotExists() throws  SQLException{
         @Cleanup
         Statement statement = connection.createStatement();
         
@@ -55,17 +52,15 @@ class DbLibraryManager {
             Path path = Paths.get("src/main/resources/","Create.sql");
             List<String> lines = Files.readAllLines(path, Charset.forName("UTF-8"));
             
-            String query = "";
+            StringBuilder query = new StringBuilder();
             for (String line : lines){
-                query += line;
+                query.append(line);
                 if (line.endsWith(";")){
-                    statement.execute(query);
-                    query = "";
+                    statement.execute(query.toString());
+                    query = new StringBuilder();
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
+        } catch ( IOException e) {
             e.printStackTrace();
         }
     }
@@ -82,7 +77,7 @@ class DbLibraryManager {
         crs.setTableName(tableName);
         return crs;
     }
-    protected static LibraryItem dbGetObjectFromTableWithId(String tableName, Integer wantedId) throws SQLException {
+    protected static LibraryItem dbGetObjectFromTableWithId(String tableName, Integer wantedId) throws SQLException, IllegalArgumentException {
         String selectBook = "SELECT * FROM books WHERE bookID = " + wantedId;
         String selectReader = "SELECT * FROM readers WHERE readerID = " + wantedId;
         String selectRent = "SELECT * FROM rents WHERE rentID = " + wantedId;
