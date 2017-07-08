@@ -7,74 +7,52 @@ import java.sql.SQLException;
 
 public class Library {
     
-    public void addBookReader(String name, String surname){
-        try {
-            DbLibraryManager.dbAddBookReader(name, surname);
-        } catch (SQLException e) {
-            System.out.println("Adding book reader to db failed");
-        }
+    public void addBookReader(String name, String surname) throws SQLException {
+        DbLibraryManager.dbAddBookReader(name, surname);
     }
-    public void addBook(String title, Integer pages){
-        try {
-            DbLibraryManager.dbAddBook(title, pages);
-        } catch (SQLException e) {
-            System.out.println("Adding book to db failed");
-        }
+    public void addBook(String title, Integer pages) throws SQLException {
+        DbLibraryManager.dbAddBook(title, pages);
     }
-    public void addRent(Integer bookID, Integer readerID){
-        try {
-            DbLibraryManager.dbAddRent(bookID, readerID);
-        } catch (SQLException e) {
-            System.out.println("Adding rent to db failed");
-        }
+    public void addRent(Integer bookID, Integer readerID) throws SQLException {
+        DbLibraryManager.dbAddRent(bookID, readerID);
     }
     
-    public void deleteBookReader(Integer bookReaderID) {
-        try {
-            DbLibraryManager.dbDeleteBookReader(bookReaderID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteBookReader(Integer bookReaderID) throws SQLException {
+        DbLibraryManager.dbDeleteBookReader(bookReaderID);
     }
-    public void deleteBook(Integer bookID) {
-        try {
-            DbLibraryManager.dbDeleteBook(bookID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteBook(Integer bookID) throws SQLException {
+        DbLibraryManager.dbDeleteBook(bookID);
     }
-    public void deleteRent(Integer rentID) {
-        try {
-            DbLibraryManager.dbDeleteRent(rentID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteRent(Integer rentID) throws SQLException {
+        DbLibraryManager.dbDeleteRent(rentID);
     }
     
-    public void showAll(String tableName){
-        try {
-            @Cleanup
-            CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
-            while(crs.next()) {
-                for (int i = 1; i <= 50; i++) {
+    public boolean showAll(String tableName) throws SQLException{
+        @Cleanup
+        CachedRowSet crs = DbLibraryManager.dbGetAllFromTable(tableName);
+        if(crs.size() > 0) {
+            int counter = crs.size();
+            while (crs.next()) {
+                for (int i = 1; i <= counter; i++) {
                     try {
                         System.out.print(crs.getString(i) + " ");
-                    }
-                    catch (SQLException notEnoughColumns){
+                    } catch (SQLException notEnoughColumns) {
+                        counter = i;
                         break;
                     }
                 }
                 System.out.println();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return true;
         }
+        else
+            return false;
     }
     public LibraryItem getObjectFromTable(String tableName, int wantedId){
         LibraryItem resultObject= null;
         try {
             resultObject = DbLibraryManager.dbGetObjectFromTableWithId(tableName, wantedId);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultObject;
