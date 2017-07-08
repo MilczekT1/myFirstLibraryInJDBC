@@ -1,5 +1,6 @@
 package LibraryStuff;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,10 @@ public class TestBook {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @AfterClass
+    public static void shutDown(){
+        book = null;
     }
     
     @Test
@@ -30,10 +35,8 @@ public class TestBook {
         boolean exceptionCatched = false;
         try {
             book = new Book("LOTR", -5);
-        } catch(Exception e){
-           if (e instanceof IllegalArgumentException){
-               exceptionCatched = true;
-           }
+        } catch(IllegalArgumentException e){
+            exceptionCatched = true;
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
@@ -41,10 +44,8 @@ public class TestBook {
         exceptionCatched = false;
         try {
             book = new Book(null, 500);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
+        } catch(IllegalArgumentException e){
+            exceptionCatched = true;
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
@@ -52,10 +53,8 @@ public class TestBook {
         exceptionCatched = false;
         try {
             book = new Book(null, -500);
-        } catch(Exception e){
-            if (e instanceof IllegalArgumentException){
-                exceptionCatched = true;
-            }
+        } catch(IllegalArgumentException e){
+            exceptionCatched = true;
         }
         if (!exceptionCatched) Assert.fail("IllegalArgumentException was not thrown");
         
@@ -63,7 +62,7 @@ public class TestBook {
         exceptionCatched = false;
         try {
             book = new Book("LOTR", 500);
-        } catch(Exception e){
+        } catch(IllegalArgumentException e) {
             exceptionCatched = true;
         }
         if (exceptionCatched) Assert.fail("IllegalArgumentException was thrown");
