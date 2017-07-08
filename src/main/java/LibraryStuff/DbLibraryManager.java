@@ -14,6 +14,8 @@ import java.sql.*;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class DbLibraryManager {
     
@@ -105,7 +107,7 @@ class DbLibraryManager {
                     return new Rent(rent.getInt("bookID"),rent.getInt("readerID"),rent.getInt("rentID"));
                 } else { break; }
             default:
-                System.out.println("error: no such object in database");
+                System.out.println("error: no such object in database (" + tableName + " " + wantedId+")");
                 break;
         }
         throw new SQLException("error selecting object from db");
@@ -121,8 +123,7 @@ class DbLibraryManager {
         preStatement.setString(2, surname);
         preStatement.execute();
         
-        //TODO: log it
-        System.out.println("added bookReader");
+        Logger.getAnonymousLogger().log(Level.INFO, "added bookReader");
     }
     protected static void dbAddBook(String title, Integer pages)throws SQLException{
         String query = "INSERT INTO books(title, pages) VALUES(?, ?)";
@@ -133,8 +134,7 @@ class DbLibraryManager {
         preStatement.setString(2, pages.toString());
         preStatement.execute();
         
-        //TODO: log it
-        System.out.println("added book");
+        Logger.getAnonymousLogger().log(Level.INFO, "added book");
     }
     protected static void dbAddRent(Integer readerID, Integer bookID) throws SQLException{
         String query = "INSERT INTO rents(readerID, bookID, endDate) VALUES(?, ?, ?)";
@@ -150,8 +150,7 @@ class DbLibraryManager {
         preStatement.setTimestamp(3, new Timestamp(cal.getTime().getTime()));
         preStatement.execute();
         
-        //TODO: log it
-        System.out.println("added rent");
+        Logger.getAnonymousLogger().log(Level.INFO, "added rent");
     }
     
     protected static void dbDeleteBookReader(Integer bookReaderID) throws SQLException {
@@ -160,8 +159,8 @@ class DbLibraryManager {
         PreparedStatement preStatement = connection.prepareStatement(query);
         preStatement.setInt(1, bookReaderID);
         preStatement.execute();
-        
-        System.out.println("deleted book reader with ID: " + bookReaderID);
+    
+        Logger.getAnonymousLogger().log(Level.INFO, "deleted book reader with ID: " + bookReaderID);
     }
     protected static void dbDeleteBook(Integer bookID) throws SQLException {
         String query = "DELETE FROM books WHERE bookID = ?";
@@ -169,8 +168,8 @@ class DbLibraryManager {
         PreparedStatement preStatement = connection.prepareStatement(query);
         preStatement.setInt(1, bookID);
         preStatement.execute();
-        
-        System.out.println("deleted book with ID: " + bookID);
+    
+        Logger.getAnonymousLogger().log(Level.INFO, "deleted book with ID: " + bookID);
     }
     protected static void dbDeleteRent(Integer rentID) throws SQLException {
         String query = "DELETE FROM rents WHERE rentID = ?";
@@ -178,7 +177,6 @@ class DbLibraryManager {
         PreparedStatement preStatement = connection.prepareStatement(query);
         preStatement.setInt(1, rentID);
         preStatement.execute();
-        
-        System.out.println("deleted rent with ID: " + rentID);
+        Logger.getAnonymousLogger().log(Level.INFO, "deleted rent with ID: " + rentID);
     }
 }
