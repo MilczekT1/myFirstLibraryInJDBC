@@ -18,16 +18,6 @@ Project should simulate simple library with:
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        
-        
-        // examples
-        library.addBookReader("James", "Bond");
-        library.addBook("LOTR", 4676);
-        library.addRent(1,1);
-        library.showAll("readers");
-        library.showAll("books");
-        library.showAll("rents");
-        
-        System.out.println("Amen");
+        // TODO: create simple menu and use library methods
     }
 }
